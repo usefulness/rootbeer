@@ -45,7 +45,7 @@ androidComponents {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.headerOutputDirectory.set(rootProject.file("rootbeerlib/src/main/jni"))
+    options.headerOutputDirectory.set(layout.projectDirectory.file("src/main/jni").asFile)
 }
 
 tasks.withType(Test).configureEach {
@@ -53,5 +53,5 @@ tasks.withType(Test).configureEach {
 }
 
 dependencies {
-    compileOnly libs.androidx.annotation
+    compileOnly(libs.androidx.annotation)
 }

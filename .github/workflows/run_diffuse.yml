@@ -46,7 +46,7 @@ jobs:
         uses: usefulness/diffuse-action@v1
         with:
           old-file-path: diffuse-source-file-release
-          new-file-path: rootbeerlib/build/outputs/aar/rootbeerlib-release.aar
+          new-file-path: rootbeer-core/build/outputs/aar/rootbeer-core-release.aar
 
       - uses: peter-evans/find-comment@v3
         id: find_comment
