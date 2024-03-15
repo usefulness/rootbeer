@@ -1,0 +1,35 @@
+[versions]
+beerprogressview = "0.0.6"
+constraintlayout = "2.1.4"
+java-compilation = "21"
+gradle-starter = "0.71.0"
+gradle-doctor = "0.9.2"
+library = "2.4.0"
+material = "1.11.0"
+maven-junit = "5.10.2"
+maven-assertj = "3.25.3"
+maven-binarycompatiblity = "0.14.0"
+
+[libraries]
+starter-android = { module = "com.project.starter:android", version.ref = "gradle-starter" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "maven-junit" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "maven-junit" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "maven-assertj" }
+androidx-annotation = "androidx.annotation:annotation:1.7.1"
+kotlinx-coroutines-android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0"
+androidx-core = "androidx.core:core-ktx:1.12.0"
+androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
+barbuzz-beerprogressview = { module = "uk.co.barbuzz:beerprogressview", version.ref = "beerprogressview" }
+google-material = { module = "com.google.android.material:material", version.ref = "material" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+nineoldandroids-library = { module = "com.nineoldandroids:library", version.ref = "library" }
+
+[plugins]
+starter-config = { id = "com.starter.config", version.ref = "gradle-starter" }
+starter-versioning = { id = "com.starter.versioning", version.ref = "gradle-starter" }
+starter-library-android = { id = "com.starter.library.android", version.ref = "gradle-starter" }
+starter-library-kotlin = { id = "com.starter.library.kotlin", version.ref = "gradle-starter" }
+osacky-doctor = { id = "com.osacky.doctor", version.ref = "gradle-doctor" }
+starter-application-android = { id = "com.starter.application.android", version.ref = "gradle-starter" }
+kotlinx-binarycompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "maven-binarycompatiblity" }

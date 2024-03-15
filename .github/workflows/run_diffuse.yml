@@ -1,0 +1,75 @@
+name: Diffuse
+
+on:
+  pull_request:
+    branches:
+      - master
+      - main
+      - trunk
+      - develop
+      - maine
+      - mane
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
+jobs:
+  run-diffuse:
+    env:
+      github_token: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v3
+
+      - run: ./gradlew assembleRelease
+
+      - uses: actions/cache@v4
+        name: Download base
+        with:
+          path: |
+            diffuse-source-file-release
+          key: diffuse-${{ github.event.pull_request.base.sha }}
+          restore-keys: diffuse-${{ github.event.pull_request.base.sha }}
+
+      - id: diffuse
+        uses: usefulness/diffuse-action@v1
+        with:
+          old-file-path: diffuse-source-file-release
+          new-file-path: rootbeerlib/build/outputs/aar/rootbeerlib-release.aar
+
+      - uses: peter-evans/find-comment@v3
+        id: find_comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-includes: Diffuse output
+
+      - uses: peter-evans/create-or-update-comment@v4
+        if: ${{ steps.diffuse.outputs.diff-gh-comment != null || steps.find_comment.outputs.comment-id != null }}
+        with:
+          body: |
+            ### Aar size:
+            Aar size change: ${{ steps.diffuse.outputs.size-diff-comment_style_1 }}
+
+            ### Diffuse output:
+
+            ${{ steps.diffuse.outputs.diff-gh-comment }}
+          edit-mode: replace
+          comment-id: ${{ steps.find_comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: diffuse-output
+          path: ${{ steps.diffuse.outputs.diff-file }}
