@@ -40,7 +40,7 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: usefulness/dependency-tree-diff-action@v2
         with:
-          project: 'rootbeerlib'
+          project: 'rootbeerlib-core'
           configuration: releaseRuntimeClasspath
 
       - uses: peter-evans/find-comment@v3
