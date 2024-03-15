@@ -1,40 +1,57 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+plugins {
+    alias(libs.plugins.starter.library.android)
+    alias(libs.plugins.kotlinx.binarycompatibility)
+    id("com.starter.publishing")
+}
+
+description = "Simple to use root checking Android library and sample app"
 
 android {
-    compileSdkVersion compileSdkVer
-    buildToolsVersion buildToolsVer
-    ndkVersion ndkVersionVar
+    ndkVersion "26.2.11394342"
 
     defaultConfig {
-        minSdkVersion minSdkVer
-        targetSdkVersion targetSdkVer
-        versionCode 1
-        versionName "1.0"
+        namespace "io.github.usefulness.rootbeer"
+        minSdkVersion 23
 
         ndk {
             abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
         }
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+    lint {
+        warningsAsErrors true
+        checkReleaseBuilds false
     }
-
+    kotlinOptions {
+        freeCompilerArgs += '-Xexplicit-api=strict'
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.toVersion(commonConfig.javaVersion.majorVersion.toInteger())
+        targetCompatibility = JavaVersion.toVersion(commonConfig.javaVersion.majorVersion.toInteger())
+    }
+    publishing {
+        singleVariant("release")
+    }
     externalNativeBuild {
         cmake {
-            path "src/main/cpp/CMakeLists.txt"
+            path "src/main/jni/CMakeLists.txt"
         }
     }
+}
 
+androidComponents {
+    beforeVariants(selector().withBuildType("release")) { builder ->
+        builder.enable = true
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.headerOutputDirectory.set(rootProject.file("rootbeerlib/src/main/jni"))
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.mockito:mockito-core:3.9.0'
+    compileOnly libs.androidx.annotation
 }
-
-apply from: '../gradle-mvn-push.gradle'

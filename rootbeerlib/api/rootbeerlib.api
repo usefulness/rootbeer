@@ -1,0 +1,34 @@
+public final class io/github/usefulness/rootbeer/RootBeer {
+	public fun <init> (Landroid/content/Context;)V
+	public final fun checkForBinary (Ljava/lang/String;)Z
+	public final fun checkForBusyBoxBinary ()Z
+	public final fun checkForDangerousProps ()Z
+	public final fun checkForMagiskBinary ()Z
+	public final fun checkForMagiskUdsNative ()Z
+	public final fun checkForNativeLibraryReadAccess ()Z
+	public final fun checkForRWPaths ()Z
+	public final fun checkForRootNative ()Z
+	public final fun checkForSuBinary ()Z
+	public final fun checkSuExists ()Z
+	public final fun detectPotentiallyDangerousApps ()Z
+	public final fun detectPotentiallyDangerousApps (Ljava/util/List;)Z
+	public static synthetic fun detectPotentiallyDangerousApps$default (Lio/github/usefulness/rootbeer/RootBeer;Ljava/util/List;ILjava/lang/Object;)Z
+	public final fun detectRootCloakingApps ()Z
+	public final fun detectRootCloakingApps (Ljava/util/List;)Z
+	public static synthetic fun detectRootCloakingApps$default (Lio/github/usefulness/rootbeer/RootBeer;Ljava/util/List;ILjava/lang/Object;)Z
+	public final fun detectRootManagementApps ()Z
+	public final fun detectRootManagementApps (Ljava/util/List;)Z
+	public static synthetic fun detectRootManagementApps$default (Lio/github/usefulness/rootbeer/RootBeer;Ljava/util/List;ILjava/lang/Object;)Z
+	public final fun detectTestKeys ()Z
+	public final fun isRooted ()Z
+	public final fun isRootedWithBusyBoxCheck ()Z
+	public final fun setLogging (Z)V
+}
+
+public class io/github/usefulness/rootbeer/RootBeerNative {
+	public fun <init> ()V
+	public fun checkForMagiskUDS ()Z
+	public fun checkForRoot ([Ljava/lang/String;)Z
+	public fun setLogDebugMessages (Z)V
+}
+

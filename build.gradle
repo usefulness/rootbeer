@@ -1,44 +1,36 @@
-apply from: './dependencies.gradle'
+import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapperKt
 
-buildscript {
-    apply from: './dependencies.gradle'
-
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath "com.android.tools.build:gradle:$gradlePluginVersion"
-        classpath "com.github.dcendents:android-maven-gradle-plugin:$mavenGradlePluginVersion"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-    }
+plugins {
+    alias(libs.plugins.starter.config)
+    alias(libs.plugins.starter.versioning)
+    alias(libs.plugins.starter.library.android) apply false
+    alias(libs.plugins.starter.application.android) apply false
 }
 
-def isReleaseBuild() {
-    return version.contains("SNAPSHOT") == false
+commonConfig {
+    javaFilesAllowed = true
+    javaVersion JavaVersion.VERSION_11
 }
 
 allprojects {
-    version = VERSION_NAME
-    group = GROUP
-
-    repositories {
-        google()
-        mavenCentral()
+    pluginManager.withPlugin("kotlin") { plugin ->
+        def kotlinVersion = KotlinPluginWrapperKt.getKotlinPluginVersion(project)
+        configurations.matching { it.name != "detekt" }.configureEach {
+            resolutionStrategy.eachDependency {
+                if (requested.group == 'org.jetbrains.kotlin' && requested.name.startsWith("kotlin")) {
+                    useVersion kotlinVersion
+                }
+            }
+        }
+        kotlin {
+            jvmToolchain(libs.versions.java.compilation.get().toInteger())
+        }
     }
-}
-
-subprojects {
-    // When updating the sdk version, please remember to change the circleci image to match
-    // .circle/config.yml
-    ext.compileSdkVer = 30
-    ext.buildToolsVer = "30.0.0"
-    ext.minSdkVer = 15
-    ext.targetSdkVer = 30
-    ext.ndkVersionVar = '22.1.7171670'
-
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+    pluginManager.withPlugin("java") {
+        if (project.hasProperty("skipJarVersion")) {
+            tasks.named("jar") {
+                archiveFile.set(project.layout.buildDirectory.map { it.file("libs/${project.name}.jar")})
+            }
+        }
+    }
 }

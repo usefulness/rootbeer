@@ -7,7 +7,7 @@ A tasty root checker library and sample app. We've scoured the internets for dif
 # Root checks
 These are the current checks/tricks we are using to give an indication of root.
 
-**Java checks**
+**JVM checks**
 
 * checkRootManagementApps
 * checkPotentiallyDangerousApps
@@ -26,29 +26,12 @@ We call through to our native root checker to run some of its own checks. Native
 * checkForSuBinary
 
 
-## Disclaimer and limitations!
-
-We love root! both [Scott](https://github.com/scottyab) and [Mat](https://github.com/stealthcopter) (the creators) own and use rooted devices (albeit not as daily driver). However we appreciate it can be useful to have an indication your app is running on a rooted device. Plus as hackday style project we wanted to see if we could beat the root cloakers at the time in 2015.
-
-Remember **root==god**, so there's no 100% guaranteed way to check for root! treat this as an *indication* of root.
-
-<img src="./art/rootbeerjesus.png" width=200 />
-
-
-### Root cloakers
-
-In **2015** we successfully tested Rootbeer and it flagged an indication of root when testing with the following root cloak apps. However Rootbeer was defeated when using a combination of the root cloakers activated at the same time.
-
-Tested cloakers:
-
-* [RootCloak Plus (Cydia)](https://play.google.com/store/apps/details?id=com.devadvance.rootcloakplus&hl=en_GB) requires [Cydia Substrate](http://play.google.com/store/apps/details?id=com.saurik.substrate)
-* [RootCloak](http://repo.xposed.info/module/com.devadvance.rootcloak) - requires [Xposed Framework](http://repo.xposed.info/module/de.robv.android.xposed.installer)
 
 ## Usage
 
-```java
-RootBeer rootBeer = new RootBeer(context);
-if (rootBeer.isRooted()) {
+```kotlin
+val rootBeer = RootBeer(context);
+if (rootBeer.isRooted) {
     //we found indication of root
 } else {
     //we didn't find indication of root

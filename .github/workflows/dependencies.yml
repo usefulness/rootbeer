@@ -1,0 +1,64 @@
+name: Generate dependency diff
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - main
+      - trunk
+      - develop
+      - maine
+      - mane
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
+jobs:
+  generate-diff:
+    env:
+      github_token: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v3
+
+      - run: ./gradlew assembleRelease -m
+
+      - id: dependency-diff
+        name: Generate dependency diff
+        if: github.event_name == 'pull_request'
+        uses: usefulness/dependency-tree-diff-action@v2
+        with:
+          project: 'rootbeerlib'
+          configuration: releaseRuntimeClasspath
+
+      - uses: peter-evans/find-comment@v3
+        if: github.event_name == 'pull_request'
+        id: find_comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-includes: Dependency diff
+
+      - uses: peter-evans/create-or-update-comment@v4
+        if: ${{ steps.dependency-diff.outputs.text-diff != null || steps.find_comment.outputs.comment-id != null }}
+        with:
+          body: |
+            Dependency diff:
+              ```diff
+              ${{ steps.dependency-diff.outputs.text-diff }}
+              ```
+          edit-mode: replace
+          comment-id: ${{ steps.find_comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
