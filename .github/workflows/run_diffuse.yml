@@ -30,6 +30,14 @@ jobs:
           distribution: 'temurin'
           java-version: 21
 
+      - name: Write Gradle build properties to `~/.gradle/gradle.properties`
+        run: |
+          mkdir -p ~/.gradle
+          printf "org.gradle.jvmargs=-Xmx3G -XX:+UseParallelGC\n" >> ~/.gradle/gradle.properties
+          printf "org.gradle.vfs.watch=false\n" >> ~/.gradle/gradle.properties
+          printf "org.gradle.parallel=false\n" >> ~/.gradle/gradle.properties
+        shell: bash
+
       - uses: gradle/actions/setup-gradle@v3
 
       - run: ./gradlew assembleRelease
