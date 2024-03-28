@@ -1,36 +1,10 @@
 # RootBeer ![app icon](./app/src/main/res/mipmap-xhdpi/ic_launcher_round.png)
 
-[![RootBeer](https://www.appbrain.com/stats/libraries/shield/rootbeer.svg)](https://www.appbrain.com/stats/libraries/details/rootbeer/rootbeer)
-
-A tasty root checker library and sample app. We've scoured the internets for different methods of answering that age old question... **Has this device got root?**
-
-# Root checks
-These are the current checks/tricks we are using to give an indication of root.
-
-**JVM checks**
-
-* checkRootManagementApps
-* checkPotentiallyDangerousApps
-* checkRootCloakingApps
-* checkTestKeys
-* checkForDangerousProps
-* checkForBusyBoxBinary
-* checkForSuBinary
-* checkSuExists
-* checkForRWSystem
-
-**Native checks**
-
-We call through to our native root checker to run some of its own checks. Native checks are typically harder to cloak, so some root cloak apps just block the loading of native libraries that contain certain keywords.
-
-* checkForSuBinary
-
-
 
 ## Usage
 
 ```kotlin
-val rootBeer = RootBeer(context);
+val rootBeer = RootBeer(context)
 if (rootBeer.isRooted) {
     //we found indication of root
 } else {
@@ -61,24 +35,13 @@ Available on [maven central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22
 
 ```java
 dependencies {
-    implementation 'com.scottyab:rootbeer-lib:0.1.0'
+    implementation 'io.github.usefulness:rootbeer-core:0.1.0'
 }
 ```
-
-Or use this [Jitpack.io link](https://jitpack.io/#scottyab/rootbeer)
 
 ### Building
 
 The native library in this application will now be built via Gradle and the latest Android Studio without having to resort to the command line. However the .so files are also distributed in this repository for those who cannot compile using the NDK for some reason.
-
-### Sample app
-
-The sample app is published on Google play to allow you to quickly and easier test the library. Enjoy! And please do feedback to us if your tests produce different results.
-
-
-<a href="https://play.google.com/store/apps/details?id=com.scottyab.rootbeer.sample&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img width="200" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" /></a>
-
-<img width="200" alt="screenshot" src="./art/ss_got_root_fail.png">
 
 
 ## Contributing
@@ -97,21 +60,3 @@ If you dig this, you might like:
 
  * Tim Strazzere's [Anti emulator checks](https://github.com/strazzere/anti-emulator/) project
  * Scott Alexander-Bown's [SafetyNet Helper library](https://github.com/scottyab/safetynethelper) - coupled with server side validation this is one of the best root detection approaches. See the [Google SafetyNet helper docs](https://developer.android.com/training/safetynet/index.html).
-
-# Licence
-
-Apache License, Version 2.0
-
-    Copyright (C) 2015, Scott Alexander-Bown, Mat Rollings
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-         http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
