@@ -1,4 +1,6 @@
-# RootBeer ![app icon](./app/src/main/res/mipmap-xhdpi/ic_launcher_round.png)
+# `rootbeer`
+[![Build Project](https://github.com/usefulness/rootbeer/actions/workflows/default.yml/badge.svg?branch=master&event=push)](https://github.com/usefulness/rootbeer/actions/workflows/default.yml)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.usefulness/rootbeer)
 
 
 ## Usage
@@ -35,18 +37,9 @@ Available on [maven central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22
 
 ```java
 dependencies {
-    implementation 'io.github.usefulness:rootbeer-core:0.1.0'
+    implementation 'io.github.usefulness:rootbeer-core:{{ version }}'
 }
 ```
-
-### Building
-
-The native library in this application will now be built via Gradle and the latest Android Studio without having to resort to the command line. However the .so files are also distributed in this repository for those who cannot compile using the NDK for some reason.
-
-
-## Contributing
-
-There must be more root checks to make this more complete. If you have one please do send us a pull request.
 
 ### Thanks
 
