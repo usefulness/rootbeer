@@ -1,6 +1,6 @@
 # `rootbeer`
 [![Build Project](https://github.com/usefulness/rootbeer/actions/workflows/default.yml/badge.svg?branch=master&event=push)](https://github.com/usefulness/rootbeer/actions/workflows/default.yml)
-![Maven Central](https://img.shields.io/maven-central/v/io.github.usefulness/rootbeer)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.usefulness/rootbeer-core)
 
 
 ## Usage
