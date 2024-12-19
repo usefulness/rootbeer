@@ -18,7 +18,7 @@ junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", vers
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "maven-assertj" }
 androidx-annotation = "androidx.annotation:annotation:1.9.1"
-kotlinx-coroutines-android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0"
+kotlinx-coroutines-android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.0"
 androidx-core = "androidx.core:core-ktx:1.15.0"
 androidx-appcompat = "androidx.appcompat:appcompat:1.7.0"
 barbuzz-beerprogressview = { module = "uk.co.barbuzz:beerprogressview", version.ref = "beerprogressview" }
