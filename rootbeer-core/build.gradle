@@ -7,19 +7,19 @@ plugins {
 description = "Simple to use root checking Android library and sample app"
 
 android {
-    ndkVersion "26.2.11394342"
+    ndkVersion = "28.1.13356709"
 
     defaultConfig {
-        namespace "io.github.usefulness.rootbeer"
-        minSdkVersion 23
+        namespace = "io.github.usefulness.rootbeer"
+        minSdkVersion = 23
 
         ndk {
             abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
         }
     }
     lint {
-        warningsAsErrors true
-        checkReleaseBuilds false
+        warningsAsErrors = true
+        checkReleaseBuilds = false
         disable("GradleDependency")
     }
     kotlinOptions {

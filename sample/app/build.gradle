@@ -5,11 +5,11 @@ plugins {
 
 android {
     defaultConfig {
-        applicationId "io.github.usefulness.rootbeer.sample"
-        namespace "io.github.usefulness.rootbeer.sample"
+        applicationId = "io.github.usefulness.rootbeer.sample"
+        namespace = "io.github.usefulness.rootbeer.sample"
         versionCode 10
         versionName "0.9"
-        minSdk 26
+        minSdk = 26
     }
     signingConfigs {
         named("debug") {
@@ -21,12 +21,12 @@ android {
     }
     buildTypes {
         named("debug") {
-            signingConfig signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("debug")
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
         }
         named("release") {
-            signingConfig signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("debug")
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             minifyEnabled true
         }
