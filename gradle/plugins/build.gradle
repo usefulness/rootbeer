@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
-
 plugins {
     id 'java-gradle-plugin'
     alias(libs.plugins.starter.library.kotlin)
@@ -12,14 +10,6 @@ dependencies {
 
 kotlin {
     jvmToolchain(libs.versions.java.compilation.get().toInteger())
-}
-
-def targetJavaVersion = JavaVersion.toVersion(libs.versions.java.compilation.get().toInteger())
-tasks.withType(JavaCompile).configureEach {
-    options.release.set(targetJavaVersion.majorVersion.toInteger())
-}
-tasks.withType(KotlinCompile).configureEach {
-    kotlinOptions.jvmTarget = targetJavaVersion
 }
 
 gradlePlugin {
