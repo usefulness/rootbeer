@@ -20,7 +20,7 @@ assertj-core = { module = "org.assertj:assertj-core", version.ref = "maven-asser
 androidx-annotation = "androidx.annotation:annotation:1.9.1"
 kotlinx-coroutines-android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2"
 androidx-core = "androidx.core:core-ktx:1.16.0"
-androidx-appcompat = "androidx.appcompat:appcompat:1.7.0"
+androidx-appcompat = "androidx.appcompat:appcompat:1.7.1"
 barbuzz-beerprogressview = { module = "uk.co.barbuzz:beerprogressview", version.ref = "beerprogressview" }
 google-material = { module = "com.google.android.material:material", version.ref = "material" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
