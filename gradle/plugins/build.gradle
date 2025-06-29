@@ -4,10 +4,6 @@ plugins {
     alias(libs.plugins.osacky.doctor)
 }
 
-dependencies {
-    implementation(libs.starter.android)
-}
-
 kotlin {
     jvmToolchain(libs.versions.java.compilation.get().toInteger())
 }
@@ -19,4 +15,7 @@ gradlePlugin {
             implementationClass = 'PublishingPlugin'
         }
     }
+}
+dependencies {
+    implementation(libs.vanniktech.maven.publish)
 }
