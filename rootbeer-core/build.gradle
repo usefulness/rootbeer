@@ -22,20 +22,20 @@ android {
         checkReleaseBuilds = false
         disable("GradleDependency")
     }
-    kotlinOptions {
-        freeCompilerArgs += '-Xexplicit-api=strict'
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.toVersion(commonConfig.javaVersion.majorVersion.toInteger())
         targetCompatibility = JavaVersion.toVersion(commonConfig.javaVersion.majorVersion.toInteger())
-    }
-    publishing {
-        singleVariant("release")
     }
     externalNativeBuild {
         cmake {
             path "src/main/jni/CMakeLists.txt"
         }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        explicitApi()
     }
 }
 
