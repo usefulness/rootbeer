@@ -10,7 +10,7 @@ material = "1.13.0"
 maven-junit = "5.14.1"
 maven-assertj = "3.27.6"
 maven-binarycompatiblity = "0.18.1"
-maven-vanniktech-maven-publish = "0.34.0"
+maven-vanniktech-maven-publish = "0.35.0"
 
 [libraries]
 starter-android = { module = "com.project.starter:android", version.ref = "gradle-starter" }
