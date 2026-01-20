@@ -2,7 +2,7 @@
 beerprogressview = "0.0.6"
 constraintlayout = "2.2.1"
 java-compilation = "24"
-gradle-starter = "0.93.0"
+gradle-starter = "0.94.0"
 gradle-doctor = "0.12.1"
 gradle-easylauncher = "6.4.1"
 library = "2.4.0"
