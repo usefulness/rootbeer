@@ -1,6 +1,6 @@
 [versions]
 beerprogressview = "0.0.6"
-constraintlayout = "2.2.1"
+constraintlayout = "2.2.2"
 java-compilation = "24"
 gradle-starter = "0.97.0"
 gradle-doctor = "0.12.1"
