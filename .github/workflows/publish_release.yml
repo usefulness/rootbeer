@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-java@v6
         with:
           distribution: 'temurin'
-          java-version: 24
+          java-version: 25
 
       - name: Write Gradle build properties to `~/.gradle/gradle.properties`
         run: |
