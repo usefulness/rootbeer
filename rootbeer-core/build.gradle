@@ -23,8 +23,8 @@ android {
         disable("GradleDependency")
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(commonConfig.javaVersion.majorVersion.toInteger())
-        targetCompatibility = JavaVersion.toVersion(commonConfig.javaVersion.majorVersion.toInteger())
+        sourceCompatibility = JavaVersion.toVersion(starterCommonConfig.javaVersion.majorVersion.toInteger())
+        targetCompatibility = JavaVersion.toVersion(starterCommonConfig.javaVersion.majorVersion.toInteger())
     }
     externalNativeBuild {
         cmake {

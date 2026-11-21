@@ -16,6 +16,14 @@ pluginManagement {
     }
 }
 
+plugins {
+    id("com.starter.config") version "0.101.0"
+}
+
+commonConfig {
+    javaVersion JavaVersion.VERSION_11
+}
+
 rootProject.name = 'io.github.usefulness.rootbeer.sample'
 
 include ":app"
